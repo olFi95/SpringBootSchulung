@@ -1,0 +1,28 @@
+package de.tss.ccv.crew.tempws;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class TempWsApplication {
+    @Autowired
+    public RestReposetory reposetory;
+
+	public static void main(String[] args) {
+		SpringApplication.run(TempWsApplication.class, args);
+		}
+	@Bean
+    CommandLineRunner runner(){
+	    return (args) -> {
+            final Temperature temp = new Temperature();
+            temp.deviceId = "someDevie";
+            temp.value = 20.4532d;
+            temp.timestamp = String.valueOf(System.currentTimeMillis());
+            this.reposetory.save(temp);
+            System.out.println("saved");
+        };
+    }
+}
