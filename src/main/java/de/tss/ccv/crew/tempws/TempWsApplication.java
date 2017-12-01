@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class TempWsApplication {
     @Autowired
-    public RestReposetory reposetory;
+    public Repository repository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TempWsApplication.class, args);
-		}
+    }
 	@Bean
     CommandLineRunner runner(){
 	    return (args) -> {
@@ -21,7 +21,7 @@ public class TempWsApplication {
             temp.deviceId = "someDevie";
             temp.value = 20.4532d;
             temp.timestamp = String.valueOf(System.currentTimeMillis());
-            this.reposetory.save(temp);
+            this.repository.save(temp);
             System.out.println("saved");
         };
     }
