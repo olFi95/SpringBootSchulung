@@ -9,12 +9,13 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class TempWsApplication {
     @Autowired
-    public Repository repository;
+    public RestRepository repository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TempWsApplication.class, args);
     }
-	@Bean
+
+    @Bean
     CommandLineRunner runner(){
 	    return (args) -> {
             final Temperature temp = new Temperature();
