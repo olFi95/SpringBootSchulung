@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 @RestResource
-interface RestReposetory extends CrudRepository<Temperature, String> {
+interface RestRepository extends CrudRepository<Temperature, String> {
 
 }
