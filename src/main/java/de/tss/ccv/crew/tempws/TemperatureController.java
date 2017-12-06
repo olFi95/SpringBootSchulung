@@ -21,4 +21,9 @@ public class TemperatureController {
     public Collection<Temperature> findAll() {
         return this.repository.findAll();
     }
+
+    @RequestMapping(path = "/temperature", method = RequestMethod.POST)
+    public void put(Temperature temp) {
+        this.repository.save(temp);
+    }
 }
