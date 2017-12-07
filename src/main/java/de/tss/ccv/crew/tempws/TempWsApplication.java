@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Date;
+
 @SpringBootApplication
 public class TempWsApplication {
     @Autowired
@@ -25,7 +27,7 @@ public class TempWsApplication {
             final Temperature temp = new Temperature();
             temp.deviceId = "someDevie";
             temp.value = 20.4532d;
-            temp.timestamp = String.valueOf(System.currentTimeMillis());
+            temp.timestamp = new Date();
             this.repository.save(temp);
             System.out.println("saved");
         };
