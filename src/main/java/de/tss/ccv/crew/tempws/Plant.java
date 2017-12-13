@@ -13,7 +13,7 @@ import java.util.Date;
 public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
+    public String id;
     public String deviceId;
     public String deviceName;
     public Double value;

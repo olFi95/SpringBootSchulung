@@ -3,10 +3,8 @@ package de.tss.ccv.crew.tempws;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Date;
@@ -27,9 +25,19 @@ public class PlantController {
         return this.repository.findAll();
     }
 
+    @RequestMapping(path = "/plant/byDeviceName", method = RequestMethod.GET)
+    public Collection<Plant> byDeviceName(@RequestParam(required = true) final String deviceName) {
+        return this.repository.getByDeviceName(deviceName);
+    }
+
     @RequestMapping(path = "/plant", method = RequestMethod.POST)
     public void put(@RequestBody final Plant plant) {
-        plant.timestamp = new Date();
+        if (plant.timestamp == null)
+            plant.timestamp = new Date();
+        if (plant.value == null)
+            throw new IllegalArgumentException("The 'value' parameter must not be null");
+        if (StringUtils.isEmpty(plant.deviceName))
+            throw new IllegalArgumentException("The 'deviceName' parameter must not be null");
         this.repository.save(plant);
         LOGGER.debug("Saved plant()");
     }
